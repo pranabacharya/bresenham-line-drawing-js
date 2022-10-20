@@ -1,0 +1,269 @@
+<html>
+    <head>
+        <style>
+            body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                color: white;
+            }
+            .container {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                width: 80%;
+                border-radius: 15px;
+                color: white;
+                margin-bottom: 40px;
+            }
+            .data-container {
+                background-color: rgb(94, 0, 187);
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+                width: 80%;
+                border-radius: 15px;
+                color: white;
+            }
+            .btn-container {
+                display: flex;
+            }
+            table {
+                border-radius: 5px;
+                margin-bottom: 50px;
+            }
+            table, tr {
+                border: 2px solid black;
+                width: 60%;
+                border-collapse: collapse;
+            }
+            tr:nth-child(even){
+                background-color: brown;
+                color: white;
+            }
+            tr:nth-child(odd){
+                background-color: rgba(165, 42, 42, 0.842);
+                color: white;
+            }
+            th , td {
+                border: 2px solid black;
+                padding: 5px;
+                font-weight: bold;
+                text-align: center;
+                font-size: 20px;
+            }
+            label {
+                font-size: 20px;
+            }
+            input[type="number"]::-webkit-inner-spin-button{
+                -webkit-appearance: none;
+            }
+            input[type="number"] {
+                padding: 3px;
+                width: 40px;
+                font-size: 20px;
+                font-weight: bold;
+                margin: none;
+                border-radius: 2px;
+                background-color: rebeccapurple;
+                color: white;
+                border: 1px solid black;
+                text-align: center;
+            }
+            input[type="number"]:nth-child(odd){
+                border-left: none;
+            }
+            input[type="number"]:focus{
+                outline: none;
+            }
+            input[type="submit"]{
+                border: none;
+                padding: 5px;
+                font-size: 20px;
+                width: 80%;
+                margin-top: 10px;
+                border-radius: 5px;
+                background-color: rgba(165, 42, 42, 0.723);
+                color: white;
+                border: 1px solid beige;
+                transition: background-color .2s linear;
+            }
+            input[type="reset"] {
+                width: 20%;
+                border: none;
+                padding: 5px;
+                font-size: 20px;
+                margin-top: 10px;
+                border-radius: 5px;
+                background-color: rgba(165, 42, 42, 0.723);
+                color: white;
+                border: 1px solid beige;
+                transition: background-color .2s linear;
+            }
+            input[type="submit"]:hover, input[type="reset"]:hover{
+                background-color: brown;
+                cursor: pointer;
+            }
+            input[type="submit"]:active{
+                outline: none;
+            }
+            .x1-y1-container, .x2-y2-container {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+<body>
+<div class="container">
+    <div class="data-container">
+        <h1>Bresenham Line Drawing Algorithm</h1>
+<form action="#">
+    <div class="x1-y1-container">
+        <label for="X1">starting co-ordinate X1, Y1:</label>
+        <input type="number" id="x1">
+        <input type="number" id="y1">
+    </div>
+    <div class="x2-y2-container">
+        <label for="X2">ending co-ordinate X2, Y2:</label>
+        <input type="number" id="x2">
+        <input type="number" id="y2">
+    </div>
+    <div class="btn-container">
+        <input type="submit" id="generate" value="Generate" />
+        <input type="reset" id="reset" value="Clear">
+    </div>
+</form>
+    <table></table>
+    <p>This website is developed by Pranab Acharya</p>
+    </div>
+</div>
+</body>
+<script>
+
+    const x1 = document.querySelector("#x1");
+    const y1 = document.querySelector("#y1");
+    const x2 = document.querySelector("#x2");
+    const y2 = document.querySelector("#y2");
+    const btn = document.querySelector('#generate');
+    btn.addEventListener('click', generateCo);
+    generateCo();
+    function generateCo(event){
+        
+        let items = document.querySelectorAll('tr');
+        document.querySelector('table').innerHTML = `
+        <tr class="heading-points">
+            <th>Iter</th>
+            <th>PK</th>
+            <th>P<sub>k+1</sub></th>
+            <th>XK</th>
+            <th>YK</th>
+            <th>X<sub>k+1</sub></th>
+            <th>Y<sub>k+1</sub></th>
+            </tr>
+        `;
+
+        if(items.length > 2){
+            items.forEach(item => {
+                item.remove();
+                })
+        }
+        let valueX1 = parseInt(x1.value);
+        let valueY1 = parseInt(y1.value);
+        let valueX2 = parseInt(x2.value);
+        let valueY2 = parseInt(y2.value);
+        
+        
+        if(x1.value === '' && x2.value === '' && y1.value === '' && y2.value === ''){
+            console.log("empty");
+        }
+        else {
+            
+            let dx = valueX2 - valueX1;
+            let dy = valueY2 - valueY1;
+            
+            let pk = 2*dy - dx;
+            let data;
+            let arr = [];
+            let counter = 1;
+            while(valueX1 !== valueX2 && valueY1 !== valueY2 && counter <= 20){
+                let tr = document.createElement('tr');
+                if(pk < 0){
+                    data = generatePklessthanZero(valueX1, valueY1, pk, dy);
+                    pk = data.pk;
+                    valueX1 = data.xk;
+                    valueY1 = data.yk;
+                    arr.push([valueX1, valueY1]);
+                }else{
+                    data = generatePkgreaterthanequalZero(valueX1, valueY1, pk, dy, dx);
+                    pk = data.pk;
+                    valueX1 = data.xk;
+                    valueY1 = data.yk;
+                    arr.push([valueX1, valueY1]);
+                }
+                tr.innerHTML = `
+                    <td>${counter}</td>
+                    <td>${data.prvsPk}</td>
+                    <td>${data.pk}</td>
+                    <td>${data.prvsXk}</td>
+                    <td>${data.prvsYk}</td>
+                    <td>${data.xk}</td>
+                    <td>${data.yk}</td>
+                `;
+                document.querySelector("table").appendChild(tr);
+                
+                counter++;
+            }
+            console.log(arr);
+        }
+    }
+    
+    function generatePklessthanZero(valueX1, valueY1, pk, dy){
+        let xk_plus_1 = valueX1 + 1;
+        let yk_plus_1 = valueY1;
+        
+        let pk_plus_1 = pk + 2*dy;
+        return ({
+            prvsXk : valueX1,
+            prvsYk : valueY1,
+            prvsPk : pk,
+            xk : xk_plus_1, 
+            yk : yk_plus_1,
+            pk : pk_plus_1
+        })
+    }
+    function generatePkgreaterthanequalZero(valueX1, valueY1, pk, dy, dx){
+        let xk_plus_1 = valueX1 + 1;
+        let yk_plus_1 = valueY1 + 1;
+        let pk_plus_1 = pk + 2*dy - 2*dx
+        
+        return ({
+            prvsXk : valueX1,
+            prvsYk : valueY1,
+            prvsPk : pk,
+            xk : xk_plus_1, 
+            yk : yk_plus_1,
+            pk : pk_plus_1
+        })
+    }
+    document.querySelector('input[type="reset"').addEventListener('click', clearAll);
+
+    function clearAll(e){
+        e.preventDefault();
+        x1.value = '';
+        x2.value='';
+        y1.value='';
+        y2.value='';
+        let items = document.querySelectorAll('tr');
+        items.forEach(item => {
+            if(!item.classList.contains('heading-points')){
+                item.remove();
+            }
+        })
+
+    }
+</script>
+</html>
