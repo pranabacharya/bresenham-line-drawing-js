@@ -9,7 +9,7 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 80%;
+    width: 90%;
     border-radius: 15px;
     color: white;
     margin-bottom: 40px;
@@ -27,25 +27,44 @@ body{
 .detail-container {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
+}
+.plot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .table-container {
+    display: flex;
+    justify-content: center;
     width: 50%;
+    height: 100%;
 }
 .graph-container {
-    background: white;
+    display: flex;
+    justify-content: center;
     width: 50%;
+    height: 100%;
+}
+.svg-container {
+    background-color: white;
+    border: 1px solid black;
+}
+#myPlot {
+    width:100%;
+    max-width:700px;
 }
 .btn-container {
     display: flex;
 }
 table {
     border-radius: 5px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    width: 80%;
 }
 table, tr {
-    border: 2px solid black;
-    width: 60%;
+    border: 1px solid black;
+    /* width: 60%; */
     border-collapse: collapse;
 }
 tr:nth-child(even){
@@ -123,4 +142,23 @@ input[type="submit"]:active{
     justify-content: space-around;
     align-items: center;
     margin-top: 10px;
+}
+
+@media (width: 500px){
+    .detail-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .table-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .graph-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
 }

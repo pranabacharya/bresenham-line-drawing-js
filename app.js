@@ -91,8 +91,8 @@
               
               // Define Layout
               var layout = {
-                xaxis: {range: [2, 30], title: "X- Axis"},
-                yaxis: {range: [1, 30], title: "Y- Axis"},  
+                xaxis: {range: [5, 30], title: "X- Axis"},
+                yaxis: {range: [5, 80], title: "Y- Axis"},  
                 title: "Bresenham Line Drawing Graph Plotting"
               };
               
@@ -137,11 +137,11 @@
         x2.value='';
         y1.value='';
         y2.value='';
+        document.getElementById("myPlot").innerHTML = ''
         let items = document.querySelectorAll('tr');
         items.forEach(item => {
             if(!item.classList.contains('heading-points')){
                 item.remove();
             }
         })
-        document.querySelector('.graph-container').innerHTML = ''
     }
