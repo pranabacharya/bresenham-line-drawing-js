@@ -26,7 +26,8 @@ body{
 }
 .detail-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
 }
 .plot-container {
@@ -37,13 +38,13 @@ body{
 .table-container {
     display: flex;
     justify-content: center;
-    width: 50%;
+    width: 100%;
     height: 100%;
 }
 .graph-container {
     display: flex;
     justify-content: center;
-    width: 50%;
+    width: 100%;
     height: 100%;
 }
 .svg-container {
