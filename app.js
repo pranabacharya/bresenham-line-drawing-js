@@ -1,4 +1,5 @@
-const x1 = document.querySelector("#x1");
+    //
+    const x1 = document.querySelector("#x1");
     const y1 = document.querySelector("#y1");
     const x2 = document.querySelector("#x2");
     const y2 = document.querySelector("#y2");
@@ -33,8 +34,7 @@ const x1 = document.querySelector("#x1");
         
         if(x1.value === '' && x2.value === '' && y1.value === '' && y2.value === ''){
             console.log("empty");
-        }
-        else {
+        }else {
             
             let dx = valueX2 - valueX1;
             let dy = valueY2 - valueY1;
@@ -42,8 +42,13 @@ const x1 = document.querySelector("#x1");
             let pk = 2*dy - dx;
             let data;
             let arr = [];
+            arr.push([parseInt(x1.value), parseInt(y1.value)])
+
+            let xCor = [], yCor = [];
+            xCor.push(parseInt(x1.value));
+            yCor.push(parseInt(y1.value));
             let counter = 1;
-            while(valueX1 !== valueX2 && valueY1 !== valueY2 && counter <= 20){
+            while(valueX1 !== valueX2 && valueY1 !== valueY2 && counter <= 30){
                 let tr = document.createElement('tr');
                 if(pk < 0){
                     data = generatePklessthanZero(valueX1, valueY1, pk, dy);
@@ -51,12 +56,16 @@ const x1 = document.querySelector("#x1");
                     valueX1 = data.xk;
                     valueY1 = data.yk;
                     arr.push([valueX1, valueY1]);
-                }else{
+                    xCor.push(valueX1);
+                    yCor.push(valueY1);
+                }else {
                     data = generatePkgreaterthanequalZero(valueX1, valueY1, pk, dy, dx);
                     pk = data.pk;
                     valueX1 = data.xk;
                     valueY1 = data.yk;
                     arr.push([valueX1, valueY1]);
+                    xCor.push(valueX1);
+                    yCor.push(valueY1);
                 }
                 tr.innerHTML = `
                     <td>${counter}</td>
@@ -68,18 +77,35 @@ const x1 = document.querySelector("#x1");
                     <td>${data.yk}</td>
                 `;
                 document.querySelector("table").appendChild(tr);
-                
                 counter++;
             }
-            console.log(arr);
+            // console.log(arr);
+            console.log(xCor);
+            console.log(yCor);
+
+            var dataItems = [{
+                x: xCor,
+                y: yCor,
+                mode:"lines"
+              }];
+              
+              // Define Layout
+              var layout = {
+                xaxis: {range: [2, 30], title: "X- Axis"},
+                yaxis: {range: [1, 30], title: "Y- Axis"},  
+                title: "Bresenham Line Drawing Graph Plotting"
+              };
+              
+              // Display using Plotly
+              Plotly.newPlot("myPlot", dataItems, layout);
         }
     }
     
     function generatePklessthanZero(valueX1, valueY1, pk, dy){
         let xk_plus_1 = valueX1 + 1;
         let yk_plus_1 = valueY1;
-        
         let pk_plus_1 = pk + 2*dy;
+
         return ({
             prvsXk : valueX1,
             prvsYk : valueY1,
@@ -92,7 +118,7 @@ const x1 = document.querySelector("#x1");
     function generatePkgreaterthanequalZero(valueX1, valueY1, pk, dy, dx){
         let xk_plus_1 = valueX1 + 1;
         let yk_plus_1 = valueY1 + 1;
-        let pk_plus_1 = pk + 2*dy - 2*dx
+        let pk_plus_1 = pk + 2*dy - 2*dx;
         
         return ({
             prvsXk : valueX1,
@@ -117,5 +143,5 @@ const x1 = document.querySelector("#x1");
                 item.remove();
             }
         })
-
+        document.querySelector('.graph-container').innerHTML = ''
     }
