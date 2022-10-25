@@ -9,7 +9,6 @@
 
     function generateCo(e){
         console.log(e);
-        e.preventDefault();
         
         let items = document.querySelectorAll('tr');
         document.querySelector('table').innerHTML = `
@@ -107,7 +106,8 @@
               
               // Display using Plotly
               Plotly.newPlot("myPlot", dataItems, layout);
-            document.querySelector('[data-title="Autoscale"]').click();
+              document.querySelector('[data-title="Autoscale"]').click();
+            e.preventDefault();
         }
     }
     
