@@ -144,7 +144,8 @@
         x2.value='';
         y1.value='';
         y2.value='';
-        document.getElementById("myPlot").innerHTML = '';
+        console.log("working");
+        document.getElementById("myPlot").innerHTML = 'working';
         let items = document.querySelectorAll('tr');
         items.forEach(item => {
             if(!item.classList.contains('heading-points')){
