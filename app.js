@@ -137,15 +137,14 @@
             pk : pk_plus_1
         })
     }
-    document.querySelector('input[type="reset"').addEventListener('click', clearAll);
+    document.querySelector('input[type="reset"]').addEventListener('click', clearAll);
 
-    function clearAll(e){
-        e.preventDefault();
+    function clearAll(){
         x1.value = '';
         x2.value='';
         y1.value='';
         y2.value='';
-        document.getElementById("myPlot").innerHTML = ''
+        document.getElementById("myPlot").innerHTML = '';
         let items = document.querySelectorAll('tr');
         items.forEach(item => {
             if(!item.classList.contains('heading-points')){
