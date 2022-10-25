@@ -93,13 +93,11 @@
               // Define Layout
               var layout = {
                 xaxis: {
-//                     range: [5, 30]
-                     autorange: True,
+                     range: [5, 30],
                      title: "X- Axis"
                 },
                 yaxis: {
-//                     range: [5, 80]
-                    autorange: True,
+                    range: [5, 80],
                     title: "Y- Axis"
                 },  
                 title: "Bresenham Line Drawing Graph Plotting"
@@ -107,6 +105,7 @@
               
               // Display using Plotly
               Plotly.newPlot("myPlot", dataItems, layout);
+            document.querySelector('[data-title="Autoscale"]').click();
         }
     }
     
