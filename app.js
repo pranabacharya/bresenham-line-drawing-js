@@ -8,7 +8,7 @@
     generateCo();
 
     function generateCo(e){
-        e.preventDefault();
+        console.log(e);
         
         let items = document.querySelectorAll('tr');
         document.querySelector('table').innerHTML = `
@@ -138,10 +138,11 @@
             pk : pk_plus_1
         })
     }
+
     document.querySelector('input[type="reset"]').addEventListener('click', clearAll);
 
     function clearAll(e){
-        e.preventDefault();
+        
         x1.value = '';
         x2.value='';
         y1.value='';
@@ -155,4 +156,5 @@
                 console.log("working rem");
             }
         })
+        e.preventDefault();
     }
