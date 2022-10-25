@@ -8,7 +8,7 @@
     generateCo();
 
     function generateCo(e){
-        console.log(e);
+        // console.log(e);
         
         let items = document.querySelectorAll('tr');
         document.querySelector('table').innerHTML = `
