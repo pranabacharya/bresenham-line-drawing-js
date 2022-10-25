@@ -7,8 +7,9 @@
     btn.addEventListener('click', generateCo);
     generateCo();
 
-    function generateCo(event){
-        event.preventDefault();
+    function generateCo(e){
+        e.preventDefault();
+        
         let items = document.querySelectorAll('tr');
         document.querySelector('table').innerHTML = `
         <tr class="heading-points">
@@ -25,7 +26,7 @@
         if(items.length > 2){
             items.forEach(item => {
                 item.remove();
-                })
+            })
         }
         let valueX1 = parseInt(x1.value);
         let valueY1 = parseInt(y1.value);
@@ -139,17 +140,19 @@
     }
     document.querySelector('input[type="reset"]').addEventListener('click', clearAll);
 
-    function clearAll(){
+    function clearAll(e){
+        e.preventDefault();
         x1.value = '';
         x2.value='';
         y1.value='';
         y2.value='';
         console.log("working");
-        document.getElementById("myPlot").innerHTML = 'working';
+        document.getElementById("myPlot").innerHTML = '';
         let items = document.querySelectorAll('tr');
         items.forEach(item => {
             if(!item.classList.contains('heading-points')){
                 item.remove();
+                console.log("working rem");
             }
         })
     }
