@@ -9,6 +9,7 @@
 
     function generateCo(e){
         console.log(e);
+        e.preventDefault();
         
         let items = document.querySelectorAll('tr');
         document.querySelector('table').innerHTML = `
