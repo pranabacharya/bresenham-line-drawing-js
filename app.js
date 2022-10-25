@@ -6,8 +6,9 @@
     const btn = document.querySelector('#generate');
     btn.addEventListener('click', generateCo);
     generateCo();
+
     function generateCo(event){
-        
+        event.preventDefault();
         let items = document.querySelectorAll('tr');
         document.querySelector('table').innerHTML = `
         <tr class="heading-points">
@@ -33,7 +34,7 @@
         
         
         if(x1.value === '' && x2.value === '' && y1.value === '' && y2.value === ''){
-            console.log("empty");
+//             console.log("empty");
         }else {
             
             let dx = valueX2 - valueX1;
@@ -80,8 +81,8 @@
                 counter++;
             }
             // console.log(arr);
-            console.log(xCor);
-            console.log(yCor);
+//             console.log(xCor);
+//             console.log(yCor);
 
             var dataItems = [{
                 x: xCor,
@@ -91,8 +92,16 @@
               
               // Define Layout
               var layout = {
-                xaxis: {range: [5, 30], title: "X- Axis"},
-                yaxis: {range: [5, 80], title: "Y- Axis"},  
+                xaxis: {
+//                     range: [5, 30]
+                     autorange: True,
+                     title: "X- Axis"
+                },
+                yaxis: {
+//                     range: [5, 80]
+                    autorange: True,
+                    title: "Y- Axis"
+                },  
                 title: "Bresenham Line Drawing Graph Plotting"
               };
               
