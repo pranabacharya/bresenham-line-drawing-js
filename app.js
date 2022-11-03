@@ -107,6 +107,7 @@
               // Display using Plotly
               Plotly.newPlot("myPlot", dataItems, layout);
               document.querySelector('[data-title="Autoscale"]').click();
+              document.querySelector('[data-title="Pan"').click();
             e.preventDefault();
         }
     }

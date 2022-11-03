@@ -107,9 +107,9 @@ input[type="number"] {
     border: 1px solid black;
     text-align: center;
 }
-input[type="number"]:nth-child(odd){
+/* input[type="number"]:nth-child(odd){
     border-left: none;
-}
+} */
 input[type="number"]:focus{
     outline: none;
 }
@@ -150,10 +150,12 @@ input[type="submit"]:active{
     align-items: center;
     margin-top: 10px;
 }
-
+p{
+    font-size: 10px;
+}
 @media (max-width: 720px){
     body {
-        font-size: 10px;
+        font-size: 9px;
     }
     .container {
         width: 100%;
@@ -175,5 +177,8 @@ input[type="submit"]:active{
         justify-content: center;
         align-items: center;
         width: 100%;
+    }
+    p{
+        font-size: 6px;
     }
 }
