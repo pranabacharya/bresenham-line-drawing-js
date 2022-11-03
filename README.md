@@ -6,5 +6,5 @@
   1-Implement the graphics thing into it
 
 ### Screenshots
-  ![image](https://user-images.githubusercontent.com/67199238/197016922-5463d5cd-b649-4b6f-9b32-f076147205f1.png)
-  ![image](https://user-images.githubusercontent.com/67199238/197017035-2baea051-a3ad-47ff-aeda-18a77eddecc5.png)
+![image](https://user-images.githubusercontent.com/67199238/199744715-b86a3a39-c7d2-48e6-8eea-3cff450bff6b.png)
+![image](https://user-images.githubusercontent.com/67199238/199744839-297a7288-4f70-4158-ab19-3944ec0eaf1a.png)
